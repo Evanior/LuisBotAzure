@@ -5,8 +5,9 @@ using Microsoft.Bot.Connector;
 using Microsoft.Bot.Builder.Dialogs;
 using System.Web.Http.Description;
 using System.Net.Http;
+using Imie.Bot.Dialogs;
 
-namespace Microsoft.Bot.Sample.SimpleEchoBot
+namespace Imie.Bot.Controllers
 {
     [BotAuthentication]
     public class MessagesController : ApiController
@@ -22,7 +23,7 @@ namespace Microsoft.Bot.Sample.SimpleEchoBot
             // check if activity is of type message
             if (activity != null && activity.GetActivityType() == ActivityTypes.Message)
             {
-                await Conversation.SendAsync(activity, () => new EchoDialog());
+                await Conversation.SendAsync(activity, () => new BasicLuisDialog());
             }
             else
             {
